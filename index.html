@@ -50,6 +50,7 @@ h1{
       linear-gradient(135deg,#101014,#08080a);
 }
 .paper{
+    position:relative; 
     max-width:560px;margin:auto;
     min-height:calc(100vh - 48px);
     padding:30px 22px;
@@ -106,6 +107,13 @@ h1{
     color:#aaa;
     letter-spacing:1px;
 }
+    .scattered-word{
+    position:absolute;
+    font:18px 'Caveat',cursive;
+    color:#777;
+    opacity:.65;
+    pointer-events:none;
+}
 </style></head><body><!-- HOME --><section id="home" class="page active">
     <div class="home-card fade">
         <div class="small">A little something for you...</div>
@@ -147,18 +155,40 @@ you'll understand why.</div>
 </div>
 <button class="back" onclick="openPage('letter')">← Back</button>
 
-</section><!-- LAST --><section id="last" class="page dark-page">
+</section><!-- LAST -->
+<section id="last" class="page dark-page">
     <div class="paper fade">
+
         <div class="title">One Last Thing</div>
-        <div class="note">"Kaisa Naseeb Hai Mera,
-Mil k Bhi Na Mujhy Mila...❤️‍🩹"</div>
-        <div class="free-text">"All I Want Is To Be Free..."</div>
 
-<button class="back" onclick="openPage('letter')">← Back</button>
-</div>
-<button class="back" onclick="openPage('letter')">← Back</button>
+        <div class="note">❝Kaisa Naseeb Hai Mera,
+Mil k Bhi Na Mujhy Mila...❤️‍🩹❞</div>
 
-</section><script>
+        <!-- SCATTERED WORDS -->
+        <div class="scattered-word" style="top:18%;left:8%;transform:rotate(-8deg)">Anxiety</div>
+
+        <div class="scattered-word" style="top:32%;right:10%;transform:rotate(6deg)">Broken</div>
+
+        <div class="scattered-word" style="top:48%;left:12%;transform:rotate(-5deg)">Crying</div>
+
+        <div class="scattered-word" style="top:61%;right:8%;transform:rotate(9deg)">Drained</div>
+
+        <div class="scattered-word" style="top:73%;left:7%;transform:rotate(-7deg)">Exhausted</div>
+
+        <div class="scattered-word" style="top:82%;right:13%;transform:rotate(5deg)">Fading</div>
+
+        <div class="scattered-word" style="top:90%;left:25%;transform:rotate(-4deg)">
+            Ghosted · Grimness · Guilt · Grit
+        </div>
+
+    </div>
+
+    <div class="free-text">All I Want Is To Be Free...</div>
+
+    <button class="back" onclick="openPage('letter')">← Back</button>
+</section>
+    
+        <script>
 function openPage(id){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     const page=document.getElementById(id);
