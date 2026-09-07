@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    min-height:100vh;
+    font-family:'Patrick Hand',cursive;
+    background:#0b0b0d;
+    color:#eee;
+    overflow-x:hidden;
+}
+.page{display:none;min-height:100vh;padding:24px 18px 90px}
+.page.active{display:block}
+
+/* HOME */
+#home{
+    background:linear-gradient(145deg,#fffaf0,#f3e5c8);
+    color:#25211c;
+    text-align:center;
+    padding-top:70px;
+}
+.home-card{
+    max-width:420px;margin:auto;
+    padding:38px 24px;
+}
+.small{font-size:20px;letter-spacing:1px}
+h1{
+    font-family:'Caveat',cursive;
+    font-size:64px;line-height:.95;
+    margin:18px 0;
+}
+.home-card p{font-size:23px;line-height:1.25}
+.enter{
+    margin-top:38px;
+    border:1px solid #332d25;
+    background:transparent;
+    padding:12px 30px;
+    border-radius:30px;
+    font:22px 'Patrick Hand',cursive;
+    cursor:pointer;
+}
+
+/* OTHER PAGES */
+.dark-page{
+    background:
+      radial-gradient(circle at 20% 15%,#29262b 0,transparent 25%),
+      linear-gradient(135deg,#101014,#08080a);
+}
+.paper{
+    max-width:560px;margin:auto;
+    min-height:calc(100vh - 48px);
+    padding:30px 22px;
+    border:1px solid #3b3940;
+    background:rgba(20,19,22,.88);
+    box-shadow:0 20px 60px #000;
+}
+.title{
+    font-family:'Caveat',cursive;
+    font-size:48px;
+    margin-bottom:20px;
+}
+.note{
+    font-size:23px;
+    line-height:1.35;
+    color:#d5d0d0;
+    white-space:pre-line;
+}
+.back{
+    position:fixed;bottom:20px;left:50%;
+    transform:translateX(-50%);
+    padding:10px 25px;
+    border:1px solid #555;
+    border-radius:25px;
+    background:#141419;
+    color:#eee;
+    font:20px 'Patrick Hand',cursive;
+}
+.menu{
+    display:grid;gap:14px;
+    margin-top:35px;
+}
+.menu button{
+    padding:15px;
+    border:1px solid #4a474d;
+    background:#17161b;
+    color:#eee;
+    border-radius:8px;
+    font:23px 'Patrick Hand',cursive;
+    text-align:left;
+    cursor:pointer;
+}
+.menu button:active{transform:scale(.98)}
+
+.fade{animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<section id="home" class="page active">
+    <div class="home-card fade">
+        <div class="small">A little something for you...</div>
+        <h1>Happy Birthday</h1>
+        <p>
+            Today is your special day.<br>
+            So I made this little place<br>
+            just for you. 🤍
+        </p>
+        <button class="enter" onclick="openPage('letter')">Open it</button>
+    </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">A Letter</div>
+        <div class="note">Dear you,
+
+I don't know if words can ever explain
+everything I wanted to say.
+
+But today, I just want you to know
+that you are special.
+
+Happy Birthday. 🤍</div>
+
+        <div class="menu">
+            <button onclick="openPage('draft')">📜 Read the draft</button>
+            <button onclick="openPage('memories')">📷 Memories</button>
+            <button onclick="openPage('last')">🕯️ One last thing</button>
+        </div>
+    </div>
+    <button class="back" onclick="openPage('home')">← Back</button>
+</section>
+
+<!-- DRAFT -->
+<section id="draft" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">The Draft</div>
+        <div class="note">There were so many things
+I wanted to write.
+
+Some stayed as drafts.
+Some were never sent.
+
+Maybe one day,
+you'll understand why.</div>
+    </div>
+    <button class="back" onclick="openPage('letter')">← Back</button>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">Memories</div>
+        <div class="note">A few moments worth keeping.
+
+[ Your photos can be added here ]
+
+Replace these lines with your own
+photos and memories later. 📷</div>
+    </div>
+    <button class="back" onclick="openPage('letter')">← Back</button>
+</section>
+
+<!-- LAST -->
+<section id="last" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">One Last Thing</div>
+        <div class="note">If you reached this page,
+then you made it all the way here.
+
+So here's the simplest thing
+I wanted to say:
+
+Stay happy.
+Keep smiling.
+And have the best birthday. 🤍</div>
+    </div>
+    <button class="back" onclick="openPage('letter')">← Back</button>
+</section>
+
+<script>
+function openPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const page=document.getElementById(id);
+    page.classList.add('active');
+    page.querySelector('.paper,.home-card')?.classList.remove('fade');
+    void page.offsetWidth;
+    page.querySelector('.paper,.home-card')?.classList.add('fade');
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
