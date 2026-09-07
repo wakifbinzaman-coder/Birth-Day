@@ -1,611 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>27 September</title>
-
-    <!-- Handwritten Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        /* =========================
-           BASIC RESET
-        ========================== */
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: "Patrick Hand", cursive;
-            background: #0b0b0d;
-            color: #eeeeee;
-            overflow-x: hidden;
-        }
-
-
-        /* =========================
-           PAGE SYSTEM
-        ========================== */
-
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding: 28px 18px 90px;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-
-        /* =========================
-           HOME PAGE
-        ========================== */
-
-        #home {
-            min-height: 100vh;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #fffaf0,
-                    #f3e5c8
-                );
-
-            color: #25211c;
-
-            text-align: center;
-
-            padding-top: 72px;
-        }
-
-        .home-card {
-            width: 100%;
-            max-width: 430px;
-
-            margin: auto;
-
-            padding: 38px 22px;
-        }
-
-        .home-small {
-            font-size: 22px;
-            letter-spacing: 1px;
-        }
-
-        .home-date {
-            font-family: "Caveat", cursive;
-
-            font-size: 68px;
-            font-weight: 600;
-
-            line-height: 0.9;
-
-            margin: 20px 0;
-        }
-
-        .home-text {
-            font-size: 23px;
-            line-height: 1.3;
-        }
-
-        .enter-button {
-            margin-top: 36px;
-
-            padding: 11px 30px;
-
-            border: 1px solid #332d25;
-            border-radius: 30px;
-
-            background: transparent;
-
-            color: #25211c;
-
-            font-family: "Patrick Hand", cursive;
-            font-size: 22px;
-
-            cursor: pointer;
-
-            transition: 0.25s ease;
-        }
-
-        .enter-button:hover {
-            transform: translateY(-2px);
-        }
-
-
-        /* =========================
-           DARK PAGES
-        ========================== */
-
-        .dark-page {
-            background:
-                radial-gradient(
-                    circle at 20% 10%,
-                    #29262b 0,
-                    transparent 25%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #101014,
-                    #08080a
-                );
-        }
-
-
-        /* =========================
-           PAPER / DIARY CARD
-        ========================== */
-
-        .paper {
-            width: 100%;
-            max-width: 560px;
-
-            min-height: calc(100vh - 56px);
-
-            margin: auto;
-
-            padding: 30px 22px;
-
-            border: 1px solid #3b3940;
-
-            background:
-                rgba(20, 19, 22, 0.92);
-
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.75);
-        }
-
-
-        /* =========================
-           TITLES
-        ========================== */
-
-        .title {
-            font-family: "Caveat", cursive;
-
-            font-size: 52px;
-            font-weight: 600;
-
-            line-height: 1;
-
-            margin-bottom: 22px;
-        }
-
-
-        /* =========================
-           TEXT
-        ========================== */
-
-        .note {
-            font-size: 23px;
-
-            line-height: 1.4;
-
-            color: #d5d0d0;
-
-            white-space: pre-line;
-        }
-
-
-        /* =========================
-           DRAFT PHOTOS
-        ========================== */
-
-        .photos {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 12px;
-
-            margin-top: 25px;
-        }
-
-        .photos img {
-            width: 100%;
-
-            aspect-ratio: 1 / 1;
-
-            object-fit: cover;
-
-            border: 1px solid #45424a;
-
-            border-radius: 5px;
-
-            display: block;
-
-            background: #111116;
-        }
-
-
-        /* =========================
-           MENU BUTTONS
-        ========================== */
-
-        .menu {
-            display: grid;
-
-            gap: 13px;
-
-            margin-top: 32px;
-        }
-
-        .menu button {
-            width: 100%;
-
-            padding: 14px;
-
-            border: 1px solid #4a474d;
-            border-radius: 8px;
-
-            background: #17161b;
-
-            color: #eeeeee;
-
-            font-family: "Patrick Hand", cursive;
-            font-size: 23px;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.2s ease,
-                background 0.2s ease;
-        }
-
-        .menu button:hover {
-            transform: translateX(3px);
-
-            background: #1d1c22;
-        }
-
-        .menu button:active {
-            transform: scale(0.98);
-        }
-
-
-        /* =========================
-           BACK BUTTON
-        ========================== */
-
-        .back-button {
-            position: fixed;
-
-            left: 50%;
-            bottom: 20px;
-
-            transform: translateX(-50%);
-
-            padding: 9px 24px;
-
-            border: 1px solid #555;
-            border-radius: 25px;
-
-            background: #141419;
-
-            color: #eeeeee;
-
-            font-family: "Patrick Hand", cursive;
-            font-size: 20px;
-
-            cursor: pointer;
-
-            z-index: 20;
-        }
-
-
-        /* =========================
-           ANIMATION
-        ========================== */
-
-        .fade {
-            animation: fadeIn 0.55s ease;
-        }
-
-        @keyframes fadeIn {
-
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================== */
-
-        @media (max-width: 480px) {
-
-            #home {
-                padding-top: 60px;
-            }
-
-            .home-date {
-                font-size: 58px;
-            }
-
-            .title {
-                font-size: 46px;
-            }
-
-            .note {
-                font-size: 21px;
-            }
-
-            .menu button {
-                font-size: 21px;
-            }
-
-        }
-
-    </style>
-</head>
-
-
-<body>
-
-
-    <!-- =========================================
-         HOME PAGE
-    ========================================== -->
-
-    <section
-        id="home"
-        class="page active"
-    >
-
-        <div class="home-card fade">
-
-            <div class="home-small">
-                Save this date...
-            </div>
-
-            <div class="home-date">
-                27 September
-            </div>
-
-            <p class="home-text">
-                A little something made<br>
-                especially for you. 🤍
-            </p>
-
-            <button
-                class="enter-button"
-                onclick="openPage('draft')"
-            >
-                Open
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================================
-         DRAFT PAGE
-    ========================================== -->
-
-    <section
-        id="draft"
-        class="page dark-page"
-    >
-
-        <div class="paper fade">
-
-            <div class="title">
-                Draft
-            </div>
-
-
-            <div class="note">
-Some words were written,
-some moments were saved,
-and some things were left unfinished.
-
-This little section is for the things
-worth keeping.
-            </div>
-
-
-            <!--
-                ====================================
-                GITHUB PHOTO SECTION
-                ====================================
-
-                Create a folder in your GitHub
-                repository called:
-
-                    images
-
-                Then upload your photos there.
-
-                Example:
-
-                    images/photo1.jpg
-                    images/photo2.jpg
-                    images/photo3.jpg
-
-                Then add them below.
-
-                IMPORTANT:
-                File name must match EXACTLY.
-            -->
-
-
-            <div class="photos">
-
-                <img
-                    src="images/photo1.jpg"
-                    alt="Photo 1"
-                >
-
-                <img
-                    src="images/photo2.jpg"
-                    alt="Photo 2"
-                >
-
-            </div>
-
-
-            <div class="menu">
-
-                <button
-                    onclick="openPage('last')"
-                >
-                    🕯️ Continue
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="back-button"
-            onclick="openPage('home')"
-        >
-            ← Back
-        </button>
-
-    </section>
-
-
-
-    <!-- =========================================
-         LAST PAGE
-    ========================================== -->
-
-    <section
-        id="last"
-        class="page dark-page"
-    >
-
-        <div class="paper fade">
-
-            <div class="title">
-                One Last Thing
-            </div>
-
-
-            <div class="note">
-27 September.
-
-A day worth remembering.
-
-Happy Birthday. 🤍
-            </div>
-
-        </div>
-
-
-        <button
-            class="back-button"
-            onclick="openPage('draft')"
-        >
-            ← Back
-        </button>
-
-    </section>
-
-
-
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
-
-    <script>
-
-        function openPage(id) {
-
-            /*
-             * Hide every page
-             */
-
-            document
-                .querySelectorAll(".page")
-                .forEach(function(page) {
-
-                    page.classList.remove("active");
-
-                });
-
-
-            /*
-             * Show requested page
-             */
-
-            const page =
-                document.getElementById(id);
-
-            if (!page) {
-                return;
-            }
-
-            page.classList.add("active");
-
-
-            /*
-             * Restart animation
-             */
-
-            const content =
-                page.querySelector(
-                    ".paper, .home-card"
-                );
-
-            if (content) {
-
-                content.classList.remove("fade");
-
-                void page.offsetWidth;
-
-                content.classList.add("fade");
-
-            }
-
-
-            /*
-             * Scroll to top
-             */
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }
-
-    </script>
-
-
-</body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    min-height:100vh;
+    font-family:'Patrick Hand',cursive;
+    background:#0b0b0d;
+    color:#eee;
+    overflow-x:hidden;
+}
+.page{display:none;min-height:100vh;padding:24px 18px 90px}
+.page.active{display:block}
+
+/* HOME */
+#home{
+    background:linear-gradient(145deg,#fffaf0,#f3e5c8);
+    color:#25211c;
+    text-align:center;
+    padding-top:70px;
+}
+.home-card{
+    max-width:420px;margin:auto;
+    padding:38px 24px;
+}
+.small{font-size:20px;letter-spacing:1px}
+h1{
+    font-family:'Caveat',cursive;
+    font-size:64px;line-height:.95;
+    margin:18px 0;
+}
+.home-card p{font-size:23px;line-height:1.25}
+.enter{
+    margin-top:38px;
+    border:1px solid #332d25;
+    background:transparent;
+    padding:12px 30px;
+    border-radius:30px;
+    font:22px 'Patrick Hand',cursive;
+    cursor:pointer;
+}
+
+/* OTHER PAGES */
+.dark-page{
+    background:
+      radial-gradient(circle at 20% 15%,#29262b 0,transparent 25%),
+      linear-gradient(135deg,#101014,#08080a);
+}
+.paper{
+    max-width:560px;margin:auto;
+    min-height:calc(100vh - 48px);
+    padding:30px 22px;
+    border:1px solid #3b3940;
+    background:rgba(20,19,22,.88);
+    box-shadow:0 20px 60px #000;
+}
+.title{
+    font-family:'Caveat',cursive;
+    font-size:48px;
+    margin-bottom:20px;
+}
+.note{
+    font-size:23px;
+    line-height:1.35;
+    color:#d5d0d0;
+    white-space:pre-line;
+}
+.back{
+    position:fixed;bottom:20px;left:50%;
+    transform:translateX(-50%);
+    padding:10px 25px;
+    border:1px solid #555;
+    border-radius:25px;
+    background:#141419;
+    color:#eee;
+    font:20px 'Patrick Hand',cursive;
+}
+.menu{
+    display:grid;gap:14px;
+    margin-top:35px;
+}
+.menu button{
+    padding:15px;
+    border:1px solid #4a474d;
+    background:#17161b;
+    color:#eee;
+    border-radius:8px;
+    font:23px 'Patrick Hand',cursive;
+    text-align:left;
+    cursor:pointer;
+}
+.menu button:active{transform:scale(.98)}
+
+.fade{animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style></head><body><!-- HOME --><section id="home" class="page active">
+    <div class="home-card fade">
+        <div class="small">A little something for you...</div>
+        <h1>Happy Birthday</h1>
+        <p>
+            Today is your special day.<br>
+            So I made this little place<br>
+            just for you. 🤍
+        </p>
+        <button class="enter" onclick="openPage('letter')">Open it</button>
+    </div>
+</section><!-- LETTER --><section id="letter" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">A Letter</div>
+        <div class="note">Dear you,I don't know if words can ever explain
+everything I wanted to say.
+
+But today, I just want you to know
+that you are special.
+
+Happy Birthday. 🤍</div>
+
+    <div class="menu">
+        <button onclick="openPage('draft')">📜 Read the draft</button>
+        <button onclick="openPage('last')">🕯️ One last thing</button>
+    </div>
+</div>
+<button class="back" onclick="openPage('home')">← Back</button>
+
+</section><!-- DRAFT --><section id="draft" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">The Draft</div>
+        <div class="note">There were so many things
+I wanted to write.Some stayed as drafts.
+Some were never sent.
+
+Maybe one day,
+you'll understand why.</div>
+</div>
+<button class="back" onclick="openPage('letter')">← Back</button>
+
+</section><!-- LAST --><section id="last" class="page dark-page">
+    <div class="paper fade">
+        <div class="title">One Last Thing</div>
+        <div class="note">If you reached this page,
+then you made it all the way here.So here's the simplest thing
+I wanted to say:
+
+Stay happy.
+Keep smiling.
+And have the best birthday. 🤍</div>
+</div>
+<button class="back" onclick="openPage('letter')">← Back</button>
+
+</section><script>
+function openPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const page=document.getElementById(id);
+    page.classList.add('active');
+    page.querySelector('.paper,.home-card')?.classList.remove('fade');
+    void page.offsetWidth;
+    page.querySelector('.paper,.home-card')?.classList.add('fade');
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+</script></body>
 </html>
